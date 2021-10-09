@@ -2,7 +2,6 @@
 from flask import Flask, render_template,request, redirect, sessions, url_for, session
 from flask_mysqldb import MySQL     #flask_mysqldb import MySQL
 import MySQLdb 
-import re
 
 app = Flask(__name__)
 app.secret_key = "canadianwebdesigns!!@"
@@ -22,11 +21,11 @@ def index():
         if 'username' in request.form and 'password' in request.form:
             username = request.form['username']
             password = request.form['password']
-            cursor = MySQL.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute("SELECT * FROM logininfo WHERE username = %s AND password = %s",(username,password,))
+            cursor = db.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute("SELECT * FROM users WHERE username = %s AND password = %s",(username,password,))
             info = cursor.fetchone()
             if info ['username'] == username and info ['password'] == password:
-                return "Login Successfull!"
+                return render_template('profile.html')
             else:
                 return "Login Unsuccessful, Please register again"
 

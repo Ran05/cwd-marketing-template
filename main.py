@@ -24,10 +24,11 @@ def index():
             cursor = db.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute("SELECT * FROM users WHERE username = %s AND password = %s",(username,password,))
             info = cursor.fetchone()
-            if info ['username'] == username and info ['password'] == password:
-                return render_template('profile.html')
+            if info is not None:
+                if info ['username'] == username and info ['password'] == password:
+                    return render_template('profile.html')
             else:
-                return "Login Unsuccessful, Please register again"
+                return render_template('missinginfo.html')
 
 
 

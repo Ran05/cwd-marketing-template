@@ -71,10 +71,10 @@
 
 <section class="email-bomber" style="text-align: center;">
     <!-- email form -->
-  <form action="" method="post">
+  <form action="{{url_for('send_message')}}" method="POST">
           <input type="email" name="email" placeholder="email" required id=""> <br>
           <input type="text" name="subject" placeholder="Subject" required id=""><br>
-          <textarea name="email" id="" cols="30" placeholder="Message Body" required rows="10"></textarea><br>
+          <textarea name="message" id="" cols="30" placeholder="Message Body" required rows="10"></textarea><br>
           <input type="submit" value="Send Message">
     </form>
 </section>
